@@ -44,6 +44,7 @@ pub trait BoxedMapped {}
 impl<'a, T> BoxedMapped for MutexGuard<'a, T> {}
 impl<'a, T> BoxedMapped for RwLockReadGuard<'a, T> {}
 impl<'a, T> BoxedMapped for RwLockWriteGuard<'a, T> {}
+impl<'a, T> BoxedMapped for Ref<'a, T> {}
 
 // TODO: This is a bit inefficient. Provide another implementation that uses a flatter mapping if R is Deref.
 impl<G, R> BoxedMapped for MappedGuard<G, R> {}
