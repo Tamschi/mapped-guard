@@ -18,7 +18,7 @@ For anything else, please use the ["Custom issue"] template.
 This repository uses fairly extensive CI to make sure everything is in order.  
 Travis CI will automatically build and test your pull requests.
 
-**I recommend working on branches with a `-` in their name.**  
+**I recommend working on branches with a `-` or `/` in their name.**  
 The CI is configured slightly differently for them to make WIP code a bit easier.
 
 Additionally, when you run `cargo test` for the first time, [cargo-husky] sets up a Git pre-push hook to run tests.  
