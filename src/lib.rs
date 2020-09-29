@@ -78,6 +78,7 @@ pub trait MapGuard<'a, G, R1, R2: 'a> {
 	) -> Option<MappedGuard<G, R2>>;
 }
 pub trait TryMapGuard<'a, G, R1, R2: 'a, E: 'a> {
+	#[allow(clippy::missing_errors_doc)]
 	fn try_map_guard(
 		self,
 		try_map: impl FnOnce(R1) -> Result<R2, E>,
