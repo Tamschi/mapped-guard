@@ -1,3 +1,10 @@
+//! # A note on the implementation
+//!
+//! This library is a workaround until mapped guards become available in the standard library and uses boxing internally.
+//!
+//! While it's in practice likely possible to implement this more efficiently (without boxing) for many guards,
+//! this isn't safe except for mutable borrows where the documentation explicitly states they are write-through.
+
 #![doc(html_root_url = "https://docs.rs/mapped-guard/0.0.1")]
 #![warn(clippy::pedantic)]
 

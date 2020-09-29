@@ -13,7 +13,7 @@
 [![open pull requests](https://img.shields.io/github/issues-pr-raw/Tamschi/mapped-guard)](https://github.com/Tamschi/mapped-guard/pulls)
 [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/mapped-guard.svg)](https://web.crev.dev/rust-reviews/crate/mapped-guard/)
 
-TODO_README_DESCRIPTION
+Returnable guards that represent for example a subset of the original borrow. Implemented for the standard guard types and easily extensible.
 
 ## Installation
 
@@ -26,8 +26,36 @@ cargo add mapped-guard
 ## Example
 
 ```rust
-// TODO_EXAMPLE
+use core::{fmt::Debug, ops::Deref};
+use mapped_guard::MapGuard as _;
+use std::sync::Mutex;
+
+#[derive(Debug)]
+struct Wrapper(usize);
+
+let wrapper_mutex = Mutex::new(Wrapper(0));
+
+/// # Panics
+///
+/// Iff `wrapper_mutex` is poisoned.
+fn lock_increment(wrapper_mutex: &Mutex<Wrapper>) -> impl '_ + Deref<Target = usize> + Debug {
+  let mut guard = wrapper_mutex.lock().unwrap();
+  guard.0 += 1;
+  guard.map_guard(|wrapper| &wrapper.0)
+};
+
+assert_eq!(
+  *lock_increment(&wrapper_mutex),
+  1
+);
 ```
+
+## A note on the implementation
+
+This library is a workaround until mapped guards become available in the standard library and uses boxing internally.
+
+While it's in practice likely possible to implement this more efficiently (without boxing) for many guards,
+this isn't safe except for mutable borrows where the documentation explicitly states they are write-through.
 
 ## License
 
