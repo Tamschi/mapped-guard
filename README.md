@@ -41,7 +41,7 @@ let wrapper_mutex = Mutex::new(Wrapper(0));
 fn lock_increment(wrapper_mutex: &Mutex<Wrapper>) -> impl '_ + Deref<Target = usize> + Debug {
   let mut guard = wrapper_mutex.lock().unwrap();
   guard.0 += 1;
-  guard.map_guard(|wrapper| &wrapper.0)
+  guard.map_guard(|guard| &guard.0)
 };
 
 assert_eq!(
