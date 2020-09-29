@@ -1,3 +1,11 @@
+#![doc(html_root_url = "https://docs.rs/mapped-guard/0.0.1")]
+#![warn(clippy::pedantic)]
+
+#[cfg(doctest)]
+pub mod readme {
+	doc_comment::doctest!("../README.md");
+}
+
 use {
     core::{mem::transmute, ops::Deref},
     std::sync::{MutexGuard, RwLockReadGuard, RwLockWriteGuard},
@@ -41,7 +49,7 @@ impl<G, R> BoxedMapped for MappedGuard<G, R> {}
 
 //TODO: Mention this in the struct documentation!
 impl<G, R1, R> From<MappedGuard<MappedGuard<G, R1>, R>> for MappedGuard<G, R> {
-    /// Flattens nested MappedGuard instances.
+    /// Flattens nested `MappedGuard` instances.
     #[inline]
     fn from(from: MappedGuard<MappedGuard<G, R1>, R>) -> Self {
         Self {

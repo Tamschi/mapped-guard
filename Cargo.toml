@@ -3,4 +3,33 @@ name = "mapped-guard"
 version = "0.0.1"
 authors = ["Tamme Schichler <tamme@schichler.dev>"]
 edition = "2018"
+description = "TODO_DESCRIPTION"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/Tamschi/mapped-guard"
+homepage = "https://github.com/Tamschi/mapped-guard/tree/v0.0.1"
+documentation = "https://docs.rs/mapped-guard/0.0.1"
+keywords = ["map", "owned", "reference", "guard"]
+categories = ["rust-patterns"]
+readme = "README.md"
+include = [
+	"**/*.rs",
+	"!tests/unincluded_*.rs", # Tests of meta data files not included in the package.
+	"Cargo.toml",
+	"CHANGELOG.md",
+	"CODE_OF_CONDUCT.md",
+	"LICENSE-*",
+	"README.md",
+]
 publish = false
+
+[badges]
+travis-ci = { repository = "Tamschi/mapped-guard", branch = "develop" }
+is-it-maintained-issue-resolution = { repository = "Tamschi/mapped-guard" }
+is-it-maintained-open-issues = { repository = "Tamschi/mapped-guard" }
+maintenance = { status = "experimental" }
+
+[dev-dependencies]
+cargo-husky = "1.5.0"
+doc-comment = "0.3.3"
+git_info = "0.1.2"
+version-sync = "0.9.1"
