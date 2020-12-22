@@ -1,5 +1,7 @@
 # mapped-guard Changelog
 
+<!-- markdownlint-disable no-trailing-punctuation -->
+
 ## next
 
 TODO: Date
